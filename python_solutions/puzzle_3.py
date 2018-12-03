@@ -25,18 +25,18 @@ class Area:
                                      .split(',')]
     
     def add_claim(self, claim):
-        id, x, y, width, height = self.parse_claim(claim)
-        self.add_to_intact(id)
+        claim_id, x, y, width, height = self.parse_claim(claim)
+        self.add_to_intact(claim_id)
         
         for h in range(y, y + height):
             for w in range(x, x + width):
                 if self.board[h][w] != self.EMPTY_AREA:
                     self.remove_from_intact(self.board[h][w])
-                    self.remove_from_intact(id)
+                    self.remove_from_intact(claim_id)
                     
                     self.board[h][w] = self.INTERSECT_AREA
                 else:
-                    self.board[h][w] = id
+                    self.board[h][w] = claim_id
     
     def fill_board(self, data):
         for claim in data:
@@ -54,7 +54,7 @@ class Area:
 
 
 if __name__ == '__main__':
-    # test
+    # tests
     # part 1
     test_data = ['#1 @ 1,3: 4x4',
                  '#2 @ 3,1: 4x4',
@@ -67,13 +67,14 @@ if __name__ == '__main__':
     # part 2
     assert area.intact_claims == [3]
     
+    area.reset()
+    
     
     # puzzle solver
     # part 1
-    with open('inputs/input_3.txt') as f:
+    with open('../inputs/input_3.txt') as f:
         puzzle_input = [line.strip() for line in f.readlines()]
 
-    area.reset()
     area.fill_board(puzzle_input)
     
     assert area.get_intersection_size() == 113966

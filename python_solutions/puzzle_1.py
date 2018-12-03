@@ -14,7 +14,7 @@ def find_frequency(puzzle_input):
 
 
 if __name__ == '__main__':
-    puzzle_input = [int(i) for i in open('inputs/input_1.txt').readlines()]
+    puzzle_input = [int(i) for i in open('../inputs/input_1.txt').readlines()]
     
     # part 1
     print(sum(puzzle_input))
