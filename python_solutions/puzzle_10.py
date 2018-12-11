@@ -22,6 +22,7 @@ class Grid:
     OCCUPIED = '#'
     DIRECTIONS = ((0, 1), (0, -1), (1, 0), (-1, 0))
     GROUP_ERROR_TOLERANCE = 50
+    SIMULATION_TIME = 15000
 
     def __init__(self, data):
         self.points = [Point(*self.parse_input(line)) for line in data.strip().split('\n')]
@@ -69,13 +70,12 @@ class Grid:
 
     def in_group(self):
         coords = self.get_all_coords()
+        neighbours_amount = sum(self.have_neighbour(point, coords) for point in self.points)
 
-        if sum(self.have_neighbour(point, coords) for point in self.points) > len(coords) - self.GROUP_ERROR_TOLERANCE:
-            return True
-        return False
+        return neighbours_amount > len(coords) - self.GROUP_ERROR_TOLERANCE
 
     def simulate(self):
-        for second in range(1, 15000):
+        for second in range(1, self.SIMULATION_TIME):
             self.move_points()
 
             if self.in_group():
@@ -118,7 +118,7 @@ if __name__ == '__main__':
                    position=<-3,  6> velocity=< 2, -1>"""
 
     with open('../inputs/input_10.txt') as f:
-        data = f.read().strip()
+        data = f.read()
 
     grid = Grid(data)
     grid.simulate()
