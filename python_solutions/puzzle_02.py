@@ -20,7 +20,7 @@ def most_common_ids(ids):
 
 
 if __name__ == '__main__':
-    with open('../inputs/input_2.txt') as f:
+    with open('../inputs/input_02.txt') as f:
         puzzle_input = [line.strip() for line in f.readlines()]
     
     # part 1

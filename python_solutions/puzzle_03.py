@@ -72,7 +72,7 @@ if __name__ == '__main__':
     
     # puzzle solver
     # part 1
-    with open('../inputs/input_3.txt') as f:
+    with open('../inputs/input_03.txt') as f:
         puzzle_input = [line.strip() for line in f.readlines()]
 
     area.fill_board(puzzle_input)
