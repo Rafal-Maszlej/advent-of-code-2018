@@ -71,22 +71,3 @@ class Register:
 
     def __repr__(self):
         return f"<Register id: {self.id} value: {self.value}>"
-
-
-class ReverseOpcodeBase:
-    def __init__(self):
-        self.registers = [Register(i) for i in range(4)]
-        self.opcodes = [opcode for opcode in dir(Opcodes) if opcode.startswith('op_')]
-
-    def assign_registers(self, values):
-        for register, value in zip(self.registers, values):
-            register.value = value
-
-    def compare_registers(self, values):
-        return all(register.value == value for register, value in zip(self.registers, values))
-
-    def is_valid_opcode(self, opcode, instruction, registers_before, registers_after):
-        self.assign_registers(registers_before)
-        getattr(Opcodes, opcode)(self.registers, *instruction)
-
-        return self.compare_registers(registers_after)

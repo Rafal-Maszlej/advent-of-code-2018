@@ -1,12 +1,9 @@
-from registers import Opcodes, Register, ReverseOpcodeBase
+from base import ReverseOpcodeBase
+from registers import Opcodes, Register
 from parsers import InputParser
 
 
 class ReverseOpcodes(ReverseOpcodeBase):
-    def __init__(self, input_instructions_file):
-        super().__init__()
-        self.parser = InputParser(input_instructions_file)
-
     def run_test_instruction(self):
         instruction, registers_before, registers_after = self.parser.get_test_case()
         opcode_id, *instruction = instruction
@@ -24,10 +21,6 @@ class ReverseOpcodes(ReverseOpcodeBase):
 
 
 class ReverseOpcodeMapping(ReverseOpcodeBase):
-    def __init__(self, input_instructions_file):
-        super().__init__()
-        self.parser = InputParser(input_instructions_file)
-
     def run_test_instruction(self):
         instruction, registers_before, registers_after = self.parser.get_test_case()
         opcode_id, *instruction = instruction
@@ -90,7 +83,7 @@ class ProgramRunner:
 
     def run(self):
         while self.parser.data:
-            opcode_id, a, b, c = self.parser.get_line()
+            opcode_id, a, b, c = self.parser.parse_instruction()
 
             self.opcodes[opcode_id](self.registers, a, b, c)
 
