@@ -14,10 +14,10 @@ def find_frequency(puzzle_input):
 
 
 if __name__ == '__main__':
-    puzzle_input = [int(i) for i in open('../inputs/input_01.txt').readlines()]
+    puzzle_input = [int(i) for i in open('input.txt').readlines()]
     
     # part 1
-    print(sum(puzzle_input))
+    assert sum(puzzle_input) == 416
     
     # part 2
     assert find_frequency([1, -1]) == 0
@@ -26,4 +26,4 @@ if __name__ == '__main__':
     assert find_frequency([7, 7, -2, -7, -4]) == 14
     assert find_frequency([1, -2, 3, 1]) == 2
 
-    print(find_frequency(puzzle_input))
+    assert find_frequency(puzzle_input) == 56752

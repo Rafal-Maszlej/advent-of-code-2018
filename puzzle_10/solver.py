@@ -117,7 +117,7 @@ if __name__ == '__main__':
                    position=<14,  7> velocity=<-2,  0>
                    position=<-3,  6> velocity=< 2, -1>"""
 
-    with open('../inputs/input_10.txt') as f:
+    with open('input.txt') as f:
         data = f.read()
 
     grid = Grid(data)
