@@ -1,6 +1,6 @@
 import pytest
 
-from solver import Computer
+from core import IntcodeComputer
 
 
 @pytest.fixture
@@ -10,7 +10,7 @@ def program():
 
 @pytest.fixture
 def computer(program):
-    computer = Computer()
+    computer = IntcodeComputer()
     computer.load_program(program)
     return computer
 
@@ -63,7 +63,3 @@ def test_run_program4(computer):
     computer.run()
 
     assert computer.memory == expected_memory
-
-
-if __name__ == "__main__":
-    pytest.main([__file__])
